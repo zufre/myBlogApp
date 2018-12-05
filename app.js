@@ -7,7 +7,13 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.render("home");
 });
-const port = 3005;
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+const port = 3012;
 let server = app.listen(port, err => {
   if (err) {
     console.log(err);
