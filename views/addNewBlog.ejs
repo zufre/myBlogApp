@@ -5,15 +5,15 @@
   }
 </style>
 <script>
-  $(document).ready(function() {
-    $("#myButton").click(function() {
+  $(document).ready(() => {
+    $("#myButton").click(() => {
       //  alert("Testing");
-      var blogTitle = $("#bTitle").val();
-      var blogSubTitle = $("#bSubtitle").val();
-      var comImage = $("#bImage").val();
-      var blog = CKEDITOR.instances.myEditor.getData();
+      let blogTitle = $("#bTitle").val();
+      let blogSubTitle = $("#bSubtitle").val();
+      let comImage = $("#bImage").val();
+      let blog = CKEDITOR.instances.myEditor.getData();
 
-      var data = {
+      let data = {
         blogTitle: blogTitle,
         blogSubTitle: blogSubTitle,
         comImage: comImage,
@@ -22,7 +22,7 @@
 
       // console.log(blogTitle + " --- " + blogSubTitle + " --- " + comImage + " --- " + blog);
 
-      $.post("addnewblog", { data: data }).then(function(addedBlog) {
+      $.post("addnewblog", { data: data }).then(addedBlog => {
         console.log(addedBlog);
         $("#bTitle").val("");
         $("#bSubtitle").val("");

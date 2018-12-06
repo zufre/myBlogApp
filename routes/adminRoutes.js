@@ -8,15 +8,14 @@ router.get("/signup", isLoggedIn, (req, res) => {
   res.render("signup");
 });
 
-router.post("/signup", isLoggedIn, (req, res) =>{
-  
+router.post("/signup", isLoggedIn, (req, res) => {
   let newUser = new User({ username: req.body.username });
   User.register(newUser, req.body.password, (err, newCreatedUser) => {
     if (err) {
       console.log(err);
       res.redirect("/signup");
     }
-    passport.authenticate("local")(req, res, () =>  {
+    passport.authenticate("local")(req, res, () => {
       res.redirect("/");
     });
   });
@@ -32,19 +31,19 @@ router.post(
     successRedirect: "/",
     failureRedirect: "/signin"
   }),
-  (res, req) =>{}
+  (res, req) => {}
 );
 
-router.get("/signout", (req, res)  =>{
+router.get("/signout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
 
-fconst isLoggedIn = (req, res, next) =>{
+const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
   res.redirect("/signin");
-}
+};
 
 module.exports = router;

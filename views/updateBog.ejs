@@ -5,17 +5,17 @@
   }
 </style>
 <script>
-  $(document).ready(function() {
-    var blog = $("#tricky").val();
+  $(document).ready(() => {
+    let blog = $("#tricky").val();
     CKEDITOR.instances.myEditor.setData(blog);
 
-    $("#myButton").click(function() {
-      var title = $("#bTitle").val();
-      var subTitle = $("#bSubtitle").val();
-      var comImage = $("#bImage").val();
-      var blog = CKEDITOR.instances.myEditor.getData();
+    $("#myButton").click(() => {
+      let title = $("#bTitle").val();
+      let subTitle = $("#bSubtitle").val();
+      let comImage = $("#bImage").val();
+      let blog = CKEDITOR.instances.myEditor.getData();
 
-      var data = {
+      let data = {
         title: title,
         subTitle: subTitle,
         comImage: comImage,
