@@ -1,6 +1,6 @@
 let mongoose = require("mongoose");
 
-let BlogSchmema = new mongoose.Schema({
+let BlogSchema = new mongoose.Schema({
   title: { type: String, required: "Cannot be empty" },
   subTitle: { type: String, required: "Cannot be empty" },
   comImage: { type: String, required: "Cannot be empty" },

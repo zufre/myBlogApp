@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <title>Blog</title>
+    <title>Clean Blog - Start Bootstrap Theme</title>
     <!-- Bootstrap 4 CDN -->
     <link
       rel="stylesheet"
@@ -15,6 +15,16 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- Custom styles for this template -->
     <link href="css/main.css" rel="stylesheet" />
   </head>
@@ -33,7 +43,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          Menu <i class="fas fa-bars"></i>
+          Menu <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
@@ -44,22 +54,21 @@
             <li class="nav-item">
               <a class="nav-link" href="/contact">Contact</a>
             </li>
-            <% if (!currentUser) { %>
+            <!-- <%if(!currentUser){%> -->
             <li class="nav-item">
               <a class="nav-link" href="/signin">Sign In</a>
             </li>
-            <% }else{ %>
+            <!-- <% } else {%> -->
             <li class="nav-item">
               <a class="nav-link" href="/signup">Sign Up</a>
             </li>
-
             <li class="nav-item">
               <a class="nav-link" href="/signout">Sign Out</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/addnewblog">Add New Blog</a>
             </li>
-            <% } %>
+            <!-- <% } %> -->
           </ul>
         </div>
       </div>

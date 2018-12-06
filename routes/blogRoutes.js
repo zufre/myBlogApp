@@ -20,32 +20,32 @@ router.post("/addnewblog", isLoggedIn, (req, res) => {
   };
 
   Blog.create(newBlog)
-    .then(newAddedBlog => {
+    .then(function(newAddedBlog) {
       console.log(newAddedBlog);
       res.status(201).json(newAddedBlog);
     })
-    .catch(err => {
+    .catch(function(err) {
       console.log("======================= ERROR ===========================");
       console.log(err);
       res.send(err);
     });
 });
 
-router.get("/blogs/:blogId", (req, res) => {
+router.get("/blogs/:blogId", function(req, res) {
   console.log(req.params.blogId);
 
   Blog.findById(req.params.blogId)
-    .then(foundBlog => {
+    .then(function(foundBlog) {
       res.render("blog", { foundBlog: foundBlog });
     })
-    .catch(err => {
+    .catch(function(err) {
       console.log(err);
       res.send(err);
     });
 });
 
-router.delete("/blogs/:blogId", isLoggedIn, (req, res) => {
-  Blog.findByIdAndRemove(req.params.blogId, err => {
+router.delete("/blogs/:blogId", isLoggedIn, function(req, res) {
+  Blog.findByIdAndRemove(req.params.blogId, function(err) {
     if (err) {
       console.log(err);
       res.redirect("/");
@@ -55,29 +55,29 @@ router.delete("/blogs/:blogId", isLoggedIn, (req, res) => {
   });
 });
 
-router.get("/blogs/:blogId/edit", isLoggedIn, (req, res) => {
-  Blog.findById(req.params.blogId, (err, foundBlog) => {
+router.get("/blogs/:blogId/edit", isLoggedIn, function(req, res) {
+  Blog.findById(req.params.blogId, function(err, foundBlog) {
     if (err) throw err;
     res.render("updateBlog", { foundBlog: foundBlog });
   });
 });
 
-router.put("/blogs/:blogId", isLoggedIn, (req, res) => {
+router.put("/blogs/:blogId", isLoggedIn, function(req, res) {
   console.log("============================================================");
   console.log("============================================================");
   console.log("============================================================");
   console.log("============================================================");
   console.log(req.body);
-  Blog.findByIdAndUpdate(req.params.blogId, req.body, (err, blog) => {
+  Blog.findByIdAndUpdate(req.params.blogId, req.body, function(err, blog) {
     if (err) throw err;
   });
 });
 
-const isLoggedIn = (req, res, next) => {
+function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
   res.redirect("/signin");
-};
+}
 
 module.exports = router;

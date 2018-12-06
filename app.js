@@ -5,7 +5,6 @@ let express = require("express"),
   expressSession = require("express-session"),
   methodOverride = require("method-override"),
   User = require("./models/userModel"),
-  Blog = require("./models/blogModel"),
   bodyParser = require("body-parser"),
   app = express();
 
@@ -23,7 +22,7 @@ app.use(methodOverride("_method"));
 
 // Passport Config
 app.use(
-  require("express-session")({
+  expressSession({
     secret: "this is our secret sentence",
     resave: false,
     saveUninitialized: false
@@ -47,7 +46,7 @@ app.use(siteRoutes);
 app.use(blogRoutes);
 app.use(adminRoutes);
 
-let server = app.listen(3000, err => {
+let server = app.listen(3065, err => {
   if (err) {
     console.log(err);
   }
