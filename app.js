@@ -36,6 +36,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//Share current user info within all routes
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 // Routes
 
 app.get("/", (req, res) => {
@@ -65,11 +71,46 @@ app.post("/signup", (req, res) => {
 app.get("/signin", (req, res) => {
   res.render("signin");
 });
-app.get("/addnewblog", (req, res) => {
-  res.render("addnewblog");
+app.get("/signout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+app.post(
+  "/signin",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/signin"
+  }),
+  (req, res) => {}
+);
+
+app.get("/addnewblog",  (req, res)=>{
+    res.render("addNewBlog");
 });
 
-const port = 3022;
+
+app.post("/addnewblog",  (req, res)=>{
+    var title = req.body.data.blogTitle;
+    var subTitle = req.body.data.blogSubTitle;
+    var comImage = req.body.data.comImage;
+    var blog = req.body.data.blog;
+
+    var newBlog = { title:title, subTitle:subTitle, comImage:comImage, blog:blog 
+    }
+
+    blog.create(newBlog)
+    .then( (newAddedBlog) =>{
+        console.log(newAddedBlog);
+        res.status(201).json(newAddedBlog);
+    })
+    .catch((err) {
+        console.log("++++++++= ERROR ++++++++++++");
+        console.log(err);
+        res.send(err);
+    })
+});
+
+const port = 3023;
 let server = app.listen(port, err => {
   if (err) {
     console.log(err);
