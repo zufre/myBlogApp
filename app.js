@@ -9,8 +9,6 @@ let express = require("express"),
   bodyParser = require("body-parser"),
   app = express();
 
-
-
 //Routes Requiring
 let siteRoutes = require("./routes/siteRoutes"),
   blogRoutes = require("./routes/blogRoutes"),
@@ -39,7 +37,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //Share current user info within all routes
-app.use(req, res, next) = {
+app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
@@ -49,7 +47,7 @@ app.use(siteRoutes);
 app.use(blogRoutes);
 app.use(adminRoutes);
 
-let server = app.listen(3000, (err)  =>{
+let server = app.listen(3000, err => {
   if (err) {
     console.log(err);
   }
