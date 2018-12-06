@@ -22,15 +22,24 @@
 <% posts.forEach((post) => { %>
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
+    <div class="row">
+      <div class="col-lg-3 mx-auto">
+        <div class="img-thumbnail">
+          <img
+            src="<%= post.comImage %>"
+            alt="<%= post.title %>"
+            class="thumbnail"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-10 mx-auto">
       <div class="post-preview">
-        <a href="post.html">
+        <a href="/blog/<%post._id%>">
           <h2 class="post-title"><%= post.postTitle %></h2>
           <h3 class="post-subtitle"><%= post.postSubTitle %></h3>
         </a>
-        <p class="post-meta">
-          Posted by <a href="#">Start Bootstrap</a> on September 24, 2018
-        </p>
+        <p class="post-meta">Posted by <a href="#">C</a> <% post.date %></p>
       </div>
       <hr />
     </div>

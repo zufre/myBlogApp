@@ -45,7 +45,16 @@ app.use((req, res, next) => {
 // Routes
 
 app.get("/", (req, res) => {
-  res.render("home", { posts: posts });
+  Blog.find({},(req, res)=> {
+      if(err){
+          console.log("+++++++++ ERROR ++++++++++++++");
+          cconsole.log(err);
+
+      }else {
+          console.log(posts);
+          res.render("home", {posts:posts});
+      }
+  })
 });
 app.get("/contact", (req, res) => {
   res.render("contact");
